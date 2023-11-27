@@ -1,9 +1,11 @@
 package com.example.goldapp.remote
 
+import retrofit2.Retrofit
+
 object TimeRetrofitService {
 
-    private const val  url ="https://tools.daneshjooyar.com/api/v1/date/now"
+    private const val URL ="https://tools.daneshjooyar.com/api/v1/date/now"
 
-    private val retrofit =
-
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(URL)
 }
