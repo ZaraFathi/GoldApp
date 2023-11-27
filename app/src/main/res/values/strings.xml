@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">GoldApp</string>
+    <string name="img_splash">imgsplash</string>
+    <string name="gold_price">قیمت طلا و ارز</string>
+    <string name="text2">تازه ترین اخبار ارز و طلای روز جهان</string>
+    <string name="_5_1402">یکشنبه 5اذر 1402</string>
+    <string name="ars">قیمت ارز</string>
+    <string name="tala">قیمت طلا</string>
+    <string name="img_desc">img_desc</string>
+    <string name="_18">گرم طلای 18عیار</string>
+    <string name="img_tala">img_tala</string>
+    <string name="img_gold">img_gold</string>
+</resources>
