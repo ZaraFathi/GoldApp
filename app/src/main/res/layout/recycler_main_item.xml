@@ -84,8 +84,6 @@
         app:layout_constraintBottom_toBottomOf="@id/view4"
         app:layout_constraintEnd_toStartOf="@id/view4"
         app:layout_constraintTop_toTopOf="@id/view4" />
-
-
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
@@ -98,6 +96,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/textView8"/>
 
+
+
+
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        app:layout_constraintStart_toStartOf="@id/view4"
+        app:layout_constraintTop_toBottomOf="@id/view4" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="50dp"
+        android:layout_height="60dp"
+        app:srcCompat="@drawable/ic_104"
+        android:contentDescription="@string/img_tala"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
+        app:layout_constraintEnd_toEndOf="@id/view5"
+        app:layout_constraintStart_toStartOf="@id/view5" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:textColor="@color/white"
+        tools:text="@string/_18"
+        app:layout_constraintBottom_toBottomOf="@id/view5"
+        app:layout_constraintEnd_toStartOf="@id/view5"
+        app:layout_constraintTop_toTopOf="@id/view5" />
+
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        tools:text="2/000/000T"
+        android:textColor="@color/gold_text"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@id/textView10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/textView10"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
