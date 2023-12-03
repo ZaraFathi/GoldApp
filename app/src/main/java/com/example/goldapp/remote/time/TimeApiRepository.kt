@@ -1,6 +1,7 @@
-package com.example.goldapp.remote
+package com.example.goldapp.remote.time
 
-import com.example.goldapp.remote.detaModel.DateModel
+import com.example.goldapp.remote.MainRetrofitService
+import com.example.goldapp.remote.detaModel.timeModel.DateModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -13,14 +14,14 @@ class TimeApiRepository private constructor(){
 
         val instance: TimeApiRepository
             get() {
-             if(apiRepository==null) apiRepository= TimeApiRepository()
+             if(apiRepository ==null) apiRepository = TimeApiRepository()
              return apiRepository!!
             }
     }
     fun getTime(
         request: TimeRequest
     ){
-        TimeRetrofitService.apiService.getTime(true).enqueue(
+        MainRetrofitService.apiService.getTime(true).enqueue(
             object : Callback<DateModel> {
                 override fun onResponse(call: Call<DateModel>, response: Response<DateModel>) {
                     if (response.isSuccessful){

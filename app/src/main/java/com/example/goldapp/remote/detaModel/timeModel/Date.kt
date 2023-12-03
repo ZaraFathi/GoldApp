@@ -1,4 +1,4 @@
-package com.example.goldapp.remote.detaModel
+package com.example.goldapp.remote.detaModel.timeModel
 
 import com.google.gson.annotations.SerializedName
 

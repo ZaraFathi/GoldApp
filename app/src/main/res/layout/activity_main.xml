@@ -59,7 +59,7 @@
         app:layout_constraintTop_toTopOf="@id/view"/>
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/txtGold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/tala"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="@id/view" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/txtArz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/ars"
