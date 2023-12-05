@@ -50,7 +50,6 @@ class MainActivity : AppCompatActivity() {
         binding.txtArz.setOnClickListener {
             binding.txtArz.setTextColor(Color.parseColor("#E7C376"))
             binding.txtGold.setTextColor(Color.parseColor("#787879"))
-
             setData(currencyPrice)
         }
         binding.txtGold.setOnClickListener {
@@ -60,10 +59,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
     private fun getPrice() {
-        GoldApiRepository.instance.getGold(object :GoldRequest {
+        GoldApiRepository.instance.getGold(
+            object :GoldRequest {
             override fun onSuccess(data: GoldModel) {
-                goldPrice.addAll(data.data.gold)
-               currencyPrice.addAll(data.data.currencies)
+                goldPrice.addAll(data.data.golds)
+                currencyPrice.addAll(data.data.currencies)
                 setData(goldPrice)
             }
             override fun onNotSuccess(message: String) {

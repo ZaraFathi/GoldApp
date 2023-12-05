@@ -28,7 +28,7 @@ class RecyclerMainAdapter  (
 
    inner class MainViewHolder(
     private val binding:RecyclerMainItemBinding
-):ViewHolder(binding.root){
+   ):ViewHolder(binding.root){
 
     fun setData(data:ContentModel) {
         binding.txtLabel.text =data.label

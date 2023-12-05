@@ -1,8 +1,8 @@
 package com.example.goldapp.remote.golds
 
 import com.example.goldapp.remote.MainRetrofitService
-import com.example.goldapp.remote.detaModel.DateModel
 import com.example.goldapp.remote.detaModel.GoldModel
+
 
 import retrofit2.Call
 import retrofit2.Callback
