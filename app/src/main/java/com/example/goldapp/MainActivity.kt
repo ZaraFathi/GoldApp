@@ -4,13 +4,23 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.goldapp.databinding.ActivityMainBinding
+import com.example.goldapp.remote.RecyclerMainAdapter
+import com.example.goldapp.remote.detaModel.ContentModel
+import com.example.goldapp.remote.detaModel.DateModel
+import com.example.goldapp.remote.detaModel.GoldModel
+import com.example.goldapp.remote.golds.GoldApiRepository
+import com.example.goldapp.remote.golds.GoldRequest
 import com.example.goldapp.remote.time.TimeApiRepository
 import com.example.goldapp.remote.time.TimeRequest
-import com.example.goldapp.remote.detaModel.timeModel.DateModel
+
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
+    private val goldPrice =ArrayList<ContentModel>()
+    private val currencyPrice =ArrayList<ContentModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -31,13 +41,41 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         )
+        getPrice()
+
+        binding.recyclerView.layoutManager=
+            LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+
+
         binding.txtArz.setOnClickListener {
             binding.txtArz.setTextColor(Color.parseColor("#E7C376"))
             binding.txtGold.setTextColor(Color.parseColor("#787879"))
+
+            setData(currencyPrice)
         }
         binding.txtGold.setOnClickListener {
             binding.txtArz.setTextColor(Color.parseColor("#787879"))
             binding.txtGold.setTextColor(Color.parseColor("#E7C376"))
+            setData(goldPrice)
         }
+    }
+    private fun getPrice() {
+        GoldApiRepository.instance.getGold(object :GoldRequest {
+            override fun onSuccess(data: GoldModel) {
+                goldPrice.addAll(data.data.gold)
+               currencyPrice.addAll(data.data.currencies)
+                setData(goldPrice)
+            }
+            override fun onNotSuccess(message: String) {
+            }
+
+            override fun onError(error: String) {
+            }
+        }
+        )
+    }
+    private fun setData(data:ArrayList<ContentModel>){
+        binding.recyclerView.adapter=
+            RecyclerMainAdapter(data)
     }
 }
