@@ -21,6 +21,19 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding:ActivityMainBinding
     private val goldPrice =ArrayList<ContentModel>()
     private val currencyPrice =ArrayList<ContentModel>()
+    private val goldImages = listOf(
+        R.drawable.ic_101,
+        R.drawable.ic_102,
+        R.drawable.ic_104,
+        R.drawable.ic_181,
+        R.drawable.ic_181,
+    )
+    private val currencyImages = listOf(
+        R.drawable.ic_dolar,
+        R.drawable.ic_uro,
+        R.drawable.ic_derham,
+        R.drawable.ic_pond,
+    )
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -76,6 +89,6 @@ class MainActivity : AppCompatActivity() {
     }
     private fun setData(data:ArrayList<ContentModel>){
         binding.recyclerView.adapter=
-            RecyclerMainAdapter(data)
+            RecyclerMainAdapter(allData = data, images = if (data.size == 4) currencyImages else goldImages)
     }
 }
