@@ -18,9 +18,9 @@ import com.example.goldapp.remote.time.TimeRequest
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding:ActivityMainBinding
-    private val goldPrice =ArrayList<ContentModel>()
-    private val currencyPrice =ArrayList<ContentModel>()
+    private lateinit var binding: ActivityMainBinding
+    private val goldPrice = ArrayList<ContentModel>()
+    private val currencyPrice = ArrayList<ContentModel>()
     private val goldImages = listOf(
         R.drawable.ic_101,
         R.drawable.ic_102,
@@ -34,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         R.drawable.ic_derham,
         R.drawable.ic_pond,
     )
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -42,22 +43,24 @@ class MainActivity : AppCompatActivity() {
         TimeApiRepository.instance.getTime(
             object : TimeRequest {
                 override fun onSuccess(data: DateModel) {
-                    val date =data .date
-                    val text ="${date.l_value} ${date.j_value} ${date.F_value} ${date.Y_value}"
-                    binding.txtTime.text=text
+                    val date = data.date
+                    val text = "${date.l_value} ${date.j_value} ${date.F_value} ${date.Y_value}"
+                    binding.txtTime.text = text
                 }
+
                 override fun onNotSuccess(message: String) {
-                 Toast.makeText(this@MainActivity,message,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, message, Toast.LENGTH_SHORT).show()
                 }
+
                 override fun onError(error: String) {
-                    Toast.makeText(this@MainActivity,error,Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
                 }
             }
         )
         getPrice()
 
-        binding.recyclerView.layoutManager=
-            LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+        binding.recyclerView.layoutManager =
+            LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
 
         binding.txtArz.setOnClickListener {
@@ -71,24 +74,31 @@ class MainActivity : AppCompatActivity() {
             setData(goldPrice)
         }
     }
+
     private fun getPrice() {
         GoldApiRepository.instance.getGold(
-            object :GoldRequest {
-            override fun onSuccess(data: GoldModel) {
-                goldPrice.addAll(data.data.golds)
-                currencyPrice.addAll(data.data.currencies)
-                setData(goldPrice)
-            }
-            override fun onNotSuccess(message: String) {
-            }
+            object : GoldRequest {
+                override fun onSuccess(data: GoldModel) {
+                    goldPrice.addAll(data.data.golds)
+                    currencyPrice.addAll(data.data.currencies)
+                    setData(goldPrice)
+                }
 
-            override fun onError(error: String) {
+                override fun onNotSuccess(message: String) {
+                }
+
+                override fun onError(error: String) {
+                    Toast.makeText(this@MainActivity, error, Toast.LENGTH_SHORT).show()
+                }
             }
-        }
         )
     }
-    private fun setData(data:ArrayList<ContentModel>){
-        binding.recyclerView.adapter=
-            RecyclerMainAdapter(allData = data, images = if (data.size == 4) currencyImages else goldImages)
+
+    private fun setData(data: ArrayList<ContentModel>) {
+        binding.recyclerView.adapter =
+            RecyclerMainAdapter(
+                allData = data,
+                images = if (data.size == 4) currencyImages else goldImages
+            )
     }
 }
