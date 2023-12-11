@@ -34,10 +34,16 @@ class RecyclerMainAdapter(
 
         fun setData(data: ContentModel, image: Int) {
             binding.txtLabel.text = data.label
-            binding.txtPrice.text = (data.price / 10).toString()
+            binding.txtPrice.text = formatNumberWithCommas((data.price / 10).toString())
             binding.imageView3.setImageDrawable(
                 ContextCompat.getDrawable(binding.imageView3.context, image)
             )
+        }
+
+        fun formatNumberWithCommas(number: String): String {
+            val reversedNumber = number.reversed()
+            val chunkedReversedNumber = reversedNumber.chunked(3).joinToString(",")
+            return chunkedReversedNumber.reversed()
         }
     }
 
