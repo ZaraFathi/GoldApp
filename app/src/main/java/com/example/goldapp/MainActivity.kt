@@ -22,11 +22,11 @@ class MainActivity : AppCompatActivity() {
     private val goldPrice = ArrayList<ContentModel>()
     private val currencyPrice = ArrayList<ContentModel>()
     private val goldImages = listOf(
-        R.drawable.ic_101,
-        R.drawable.ic_102,
         R.drawable.ic_104,
-        R.drawable.ic_181,
-        R.drawable.ic_181,
+        R.drawable.ic_104,
+        R.drawable.ic_104,
+        R.drawable.ic_104,
+        R.drawable.ic_104,
     )
     private val currencyImages = listOf(
         R.drawable.ic_dolar,
