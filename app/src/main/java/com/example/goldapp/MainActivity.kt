@@ -1,5 +1,7 @@
 package com.example.goldapp
 
+import android.appwidget.AppWidgetManager
+import android.content.ComponentName
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -34,12 +36,18 @@ class MainActivity : AppCompatActivity() {
         R.drawable.ic_derham,
         R.drawable.ic_pond,
     )
+    private fun updateWidget() {
+        val widgetManager = AppWidgetManager.getInstance(this)
+        val widgetIds = widgetManager.getAppWidgetIds(ComponentName(this, SimpleWidgetProvider::class.java))
+        SimpleWidgetProvider().onUpdate(this, widgetManager, widgetIds)
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        updateWidget()
         TimeApiRepository.instance.getTime(
             object : TimeRequest {
                 override fun onSuccess(data: DateModel) {
